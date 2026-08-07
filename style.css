@@ -1,0 +1,249 @@
+/* 
+    Project: LIC Premium Theme
+    Colors: Blue (#024282), Gold (#F8C301), White (#FFFFFF)
+*/
+
+:root {
+    --lic-blue: #024282;
+    --lic-blue-dark: #013161;
+    --lic-gold: #F8C301;
+    --lic-gold-hover: #e5b400;
+    --lic-white: #FFFFFF;
+    --lic-light-bg: #f4f7fa;
+    --lic-text-dark: #333333;
+    --lic-text-muted: #666666;
+    --transition: all 0.3s ease;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--lic-white);
+    color: var(--lic-text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+    color: var(--lic-blue);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+}
+
+/* Navigation */
+header, .navbar {
+    background-color: var(--lic-blue);
+    color: var(--lic-white);
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--lic-gold);
+    text-transform: uppercase;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links li a:hover {
+    color: var(--lic-gold);
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, var(--lic-blue) 0%, var(--lic-blue-dark) 100%);
+    color: var(--lic-white);
+    padding: 8rem 5%;
+    text-align: center;
+    position: relative;
+    border-bottom: 5px solid var(--lic-gold);
+}
+
+.hero h1 {
+    color: var(--lic-gold);
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    opacity: 0.9;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: var(--transition);
+}
+
+.btn-primary {
+    background-color: var(--lic-gold);
+    color: var(--lic-blue);
+}
+
+.btn-primary:hover {
+    background-color: var(--lic-gold-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(248, 195, 1, 0.4);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--lic-white);
+    color: var(--lic-white);
+    margin-left: 1rem;
+}
+
+.btn-outline:hover {
+    background: var(--lic-white);
+    color: var(--lic-blue);
+}
+
+/* Sections & Grid */
+section {
+    padding: 5rem 5%;
+}
+
+.bg-light {
+    background-color: var(--lic-light-bg);
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-title h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--lic-gold);
+    margin: 10px auto;
+}
+
+/* Card Components */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    background: var(--lic-white);
+    padding: 2.5rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    border-top: 4px solid var(--lic-blue);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    border-top-color: var(--lic-gold);
+}
+
+.card i, .card .icon {
+    font-size: 3rem;
+    color: var(--lic-blue);
+    margin-bottom: 1.5rem;
+}
+
+/* Footer */
+footer {
+    background-color: var(--lic-blue-dark);
+    color: var(--lic-white);
+    padding: 4rem 5% 2rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .nav-links {
+        gap: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .hero {
+        padding: 5rem 5%;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .btn-outline {
+        margin-left: 0;
+        margin-top: 1rem;
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-title h2 {
+        font-size: 1.5rem;
+    }
+}
