@@ -1,6 +1,6 @@
 {
-  "name": "LIC Premium Insurance Portal",
-  "short_name": "LIC Premium",
+  "name": "LIC Khaja Insurance Hub",
+  "short_name": "LIC Khaja Hub",
   "description": "A premium portal for LIC insurance services and policy management.",
   "start_url": "index.html",
   "display": "standalone",
