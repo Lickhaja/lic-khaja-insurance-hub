@@ -190,6 +190,18 @@ footer {
     padding: 4rem 5% 2rem;
 }
 
+/* Footer Text Visibility Fix */
+footer h3,
+footer p,
+footer a,
+footer li {
+    color: #ffffff !important;
+}
+
+footer a:hover {
+    color: var(--lic-gold) !important;
+}
+
 .footer-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
