@@ -258,4 +258,30 @@ footer a:hover {
     .section-title h2 {
         font-size: 1.5rem;
     }
+
+}
+/* ===== MOBILE HEADER FIX ===== */
+
+@media (max-width: 768px) {
+
+    .logo,
+    .brand,
+    .site-title {
+        white-space: nowrap;
+    }
+
+    header h1,
+    header .logo h1,
+    header .brand h1 {
+        white-space: nowrap;
+        font-size: 20px;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+    }
+
+    nav li {
+        white-space: nowrap;
+    }
 }
