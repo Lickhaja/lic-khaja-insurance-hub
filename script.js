@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Configuration - Replace with actual details
     const CONTACT_INFO = {
-        phone: "+919876543210",
-        whatsapp: "919876543210",
-        email: "support@licindia.example.com",
+        phone: "+918790761602",
+whatsapp: "918790761602",
+email: "licofindia.hyderabad@gmail.com",
         whatsappMessage: "Hello, I am interested in LIC insurance plans. Please guide me."
     };
 
