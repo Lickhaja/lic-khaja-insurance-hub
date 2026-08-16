@@ -1,61 +1,67 @@
-const CACHE_NAME = 'lic-premium-cache-v1';
-const ASSETS_TO_CACHE = [
-    './',
-    './index.html',
-    './style.css',
-    './script.js',
-    './manifest.json',
-    './icons/icon-192x192.png',
-    './icons/icon-512x512.png'
+const CACHE_NAME = "lic-premium-cache-v2";
+
+const FILES_TO_CACHE = [
+    "./",
+    "./index.html",
+    "./about.html",
+    "./policies.html",
+    "./services.html",
+    "./faq.html",
+    "./contact.html",
+    "./disclaimer.html",
+    "./style.css",
+    "./script.js",
+    "./manifest.json"
 ];
 
-// Install Service Worker and cache assets
-self.addEventListener('install', (event) => {
+/* Install Service Worker */
+self.addEventListener("install", event => {
     event.waitUntil(
         caches.open(CACHE_NAME)
-            .then((cache) => {
-                return cache.addAll(ASSETS_TO_CACHE);
-            })
+            .then(cache => cache.addAll(FILES_TO_CACHE))
             .then(() => self.skipWaiting())
     );
 });
 
-// Activate Service Worker and clean up old caches
-self.addEventListener('activate', (event) => {
+
+/* Activate Service Worker */
+self.addEventListener("activate", event => {
     event.waitUntil(
-        caches.keys().then((cacheNames) => {
+        caches.keys().then(cacheNames => {
             return Promise.all(
-                cacheNames.map((cache) => {
-                    if (cache !== CACHE_NAME) {
-                        return caches.delete(cache);
-                    }
-                })
+                cacheNames
+                    .filter(cacheName => cacheName !== CACHE_NAME)
+                    .map(cacheName => caches.delete(cacheName))
             );
-        })
+        }).then(() => self.clients.claim())
     );
-    return self.clients.claim();
 });
 
-// Fetch Strategy: Cache First, falling back to Network
-self.addEventListener('fetch', (event) => {
+
+/* Fetch - Network First */
+self.addEventListener("fetch", event => {
+
+    if (event.request.method !== "GET") {
+        return;
+    }
+
     event.respondWith(
-        caches.match(event.request)
-            .then((response) => {
-                // Return cached response if found, else fetch from network
-                return response || fetch(event.request).then((fetchResponse) => {
-                    // Optional: Dynamically cache new requests
-                    return caches.open(CACHE_NAME).then((cache) => {
-                        if (event.request.url.startsWith('http')) {
-                            cache.put(event.request, fetchResponse.clone());
-                        }
-                        return fetchResponse;
+        fetch(event.request)
+            .then(response => {
+
+                if (response && response.status === 200) {
+                    const responseClone = response.clone();
+
+                    caches.open(CACHE_NAME).then(cache => {
+                        cache.put(event.request, responseClone);
                     });
-                });
-            }).catch(() => {
-                // Offline fallback if both fail (e.g., for HTML pages)
-                if (event.request.mode === 'navigate') {
-                    return caches.match('./index.html');
                 }
+
+                return response;
+            })
+            .catch(() => {
+                return caches.match(event.request);
             })
     );
+
 });
