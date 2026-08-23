@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,7 +13,7 @@
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="./manifest.json">
 
     <meta name="theme-color" content="#024282">
 </head>
@@ -281,8 +281,38 @@
     </footer>
 
 
-    <!-- JavaScript -->
-    <script src="script.js"></script>
+    <!-- Main JavaScript -->
+    <script src="./script.js"></script>
+
+
+    <!-- PWA Service Worker Registration -->
+    <script>
+        if ("serviceWorker" in navigator) {
+
+            navigator.serviceWorker.register("./sw.js", {
+                scope: "./"
+            })
+
+            .then(function (registration) {
+
+                console.log(
+                    "LIC Khaja Hub Service Worker registered:",
+                    registration.scope
+                );
+
+            })
+
+            .catch(function (error) {
+
+                console.error(
+                    "LIC Khaja Hub Service Worker failed:",
+                    error
+                );
+
+            });
+
+        }
+    </script>
 
 </body>
 </html>
